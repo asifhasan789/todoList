@@ -1,0 +1,110 @@
+*{
+    padding:0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.todoList{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:15px;
+    background-color: #e8fffc;
+    border-radius: 20px;
+    padding:15px;
+    border: 1px solid black;
+}
+.userinputs{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+}
+input[type='text']{
+    padding:10px;
+    width:340px;
+    font-size: 1.1rem;
+    border-radius: 6px;
+    border:none;
+    border:1px solid black
+
+}
+.editBtn{
+    display: none;
+}
+button{
+    cursor: pointer;
+    padding:5px 15px;
+    font-size: 1.1rem;
+
+    /* margin-top: 10px; */
+    border-radius: 6px;
+    border: none;
+    border:1px solid black;
+    transition:0.3s
+
+
+}
+.titleTxt{
+    font-weight: 600;
+}
+input[type='checkbox']{
+    width: 50px;
+}
+button:hover{
+    background-color: #c4c4c4;
+}
+
+.todoTasks{
+    border:1px solid black;
+    width:420px;
+    min-height: 400px;
+    border-radius: 15px;
+    padding:5px;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    gap:5px;
+    /* border-radius: 20px; */
+}
+.taskI{
+    display: flex;
+    justify-content: space-between;
+    width:90%;
+    align-items: center;
+
+}
+/* .desc{
+    height:200px;
+    display: flex;
+    
+} */
+
+.delTask{
+    /* width: */
+    font-size: 1rem;
+    padding:3px 8px;
+    height: 50px;
+}
+.delTask:hover{
+    color: red;
+}
+.task{
+    width:60%
+
+}
+
+@media (max-width:454px){
+    .todoTasks{
+        width: 350px;
+    }
+
+}

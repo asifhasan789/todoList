@@ -49,14 +49,15 @@ addTaskBtn.addEventListener("click", (e) => {
 });
 
 function addTaskFunction() {
-  if(titleVal == '' && descVal == ''){
-    alert("add Something first !")
-  }
-  else{
   localStorage.setItem("data", JSON.stringify(tasks));
   let dataGot = JSON.parse(localStorage.getItem("data"));
   console.log(dataGot) || [];
   tasks = dataGot;
+  if(titleVal == '' && descVal == ''){
+    alert("add Something first !")
+  }
+  else{
+  
 
   tasks.push({ title: titleVal, desc: descVal, done: false });
   console.log(tasks);

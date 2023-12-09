@@ -10,9 +10,10 @@ let tasks = [];
 
 window.onload = () => {
   tasks = getData() || [];
-  if (tasks.length > 1) {
-    displayTasks(tasks);
-  }
+  // if (tasks.length > 1) {
+  //   displayTasks(tasks);
+  // }
+  displayTasks(tasks);
 };
 
 titleInp.addEventListener("keyup", (e) => {
@@ -28,11 +29,9 @@ descInp.addEventListener("keyup", (e) => {
   }
 });
 
-console.log(tasks);
+// console.log(tasks);
 addTaskBtn.addEventListener("click", (e) => {
-  
   addTaskFunction();
-
 });
 
 function addTaskFunction() {
@@ -56,11 +55,14 @@ function addTaskFunction() {
 }
 
 function displayTasks(data) {
-  let displayItems = data.map((d, i) => {
-    let item = `<div class="taskI">
+  if (data.length < 1) {
+    taskBody.innerHTML = "<h3>No Todo's Available</h3>;";
+  } else {
+    let displayItems = data.map((d, i) => {
+      let item = `<div class="taskI">
 <input type="checkbox" name="" id="${i}" onchange='toggleStrike(this,${i})' ${
-      d.done ? "checked" : ""
-    }>
+        d.done ? "checked" : ""
+      }>
 <div class="task">
     <p class="titleTxt">${d.title}</p>
     <p class="descTxt">${d.desc}</p>
@@ -68,13 +70,15 @@ function displayTasks(data) {
 </div>
 <button class="delTask" onclick=delF(${i})>Delete</button>
 </div>`;
-    return item;
-  });
+      return item;
+    });
 
-  taskBody.innerHTML = displayItems.join("");
+    taskBody.innerHTML = displayItems.join("");
+  }
 }
 
 function toggleStrike(cb, i) {
+  
   let sb = cb.nextElementSibling;
   tasks = getData();
   if (i in tasks) {
@@ -89,6 +93,7 @@ function toggleStrike(cb, i) {
 }
 
 function delF(i) {
+
   tasks = getData();
 
   tasks.splice(i, 1);
@@ -101,7 +106,12 @@ function delF(i) {
 function delCompTasks() {
   tasks = getData();
 
+  if (tasks.length == 0) {
+    alert("No tasks to delete");
+  }
+
   tasks = tasks.filter((t) => t.done == false);
+
   displayTasks(tasks);
 
   setData();

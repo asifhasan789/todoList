@@ -9,6 +9,11 @@ body{
     align-items: center;
     justify-content: center;
 }
+.btns{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+}
 .todoList{
     margin-top: 50px;
     display: flex;
@@ -56,6 +61,9 @@ button{
 }
 input[type='checkbox']{
     width: 50px;
+}
+input[type="checkbox"]:checked + .task {
+  text-decoration: line-through;
 }
 button:hover{
     background-color: #c4c4c4;

@@ -112,7 +112,13 @@ button:hover{
 
 @media (max-width:454px){
     .todoTasks{
-        width: 315px;
+        width: 300px;
+    }
+    /* .userinputs{
+        width:300px;
+    } */
+    input[type='text']{
+        width:200px;
     }
 
 }

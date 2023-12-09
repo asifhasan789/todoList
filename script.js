@@ -7,7 +7,7 @@ let titleVal = "";
 let descVal = "";
 
 window.onload = ()=>{
-      let dataGot = JSON.parse(localStorage.getItem("data"));
+      let dataGot = JSON.parse(localStorage.getItem("data")) || [];
       displayTasks(dataGot)
 
 }
@@ -24,6 +24,8 @@ descInp.addEventListener("change", (e) => {
 let tasks = [];
 console.log(tasks);
 addTaskBtn.addEventListener("click", (e) => {
+  // localStorage.setItem("data", JSON.stringify(tasks));
+
 
   // let dataGot = JSON.parse(localStorage.getItem("data"));
   let dataGot = JSON.parse(localStorage.getItem("data"));

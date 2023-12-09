@@ -6,69 +6,52 @@ let taskBody = document.querySelector(".todoTasks");
 let titleVal = "";
 let descVal = "";
 
+let tasks = [];
+
 window.onload = () => {
-  let dataGot = JSON.parse(localStorage.getItem("data")) || [];
-  tasks = dataGot
-  if(dataGot.length > 1){
-  displayTasks(dataGot);}
+  tasks = getData() || [];
+  if (tasks.length > 1) {
+    displayTasks(tasks);
+  }
 };
 
 titleInp.addEventListener("keyup", (e) => {
   titleVal = e.target.value;
   if (e.key == "Enter") {
-    // console.log('enter got');
     descInp.focus();
   }
-  // console.log(titleVal);
 });
 descInp.addEventListener("keyup", (e) => {
   descVal = e.target.value;
   if (e.key == "Enter") {
-    // console.log('enter got');
     addTaskFunction();
   }
-  //   console.log(descVal);
 });
 
-let tasks = [];
 console.log(tasks);
 addTaskBtn.addEventListener("click", (e) => {
-
-  // let dataGot = JSON.parse(localStorage.getItem("data"));
-  //   let dataGot = JSON.parse(localStorage.getItem("data"));
-  //   console.log(dataGot) || []
-  //   tasks = dataGot
-
-  //   tasks.push({ title: titleVal, desc: descVal, done: false });
-  //   console.log(tasks);
-
-  //   localStorage.setItem("data", JSON.stringify(tasks));
-
+  
   addTaskFunction();
-  // displayTasks(dataGot)
+
 });
 
 function addTaskFunction() {
-  localStorage.setItem("data", JSON.stringify(tasks));
-  let dataGot = JSON.parse(localStorage.getItem("data"));
-  console.log(dataGot) || [];
-  tasks = dataGot;
-  if(titleVal == '' && descVal == ''){
-    alert("add Something first !")
-  }
-  else{
-  
+  setData();
+  tasks = getData();
 
-  tasks.push({ title: titleVal, desc: descVal, done: false });
-  console.log(tasks);
+  if (titleVal == "" && descVal == "") {
+    alert("add Something first !");
+  } else {
+    tasks.push({ title: titleVal, desc: descVal, done: false });
+    console.log(tasks);
 
-  localStorage.setItem("data", JSON.stringify(tasks));
+    setData();
 
-  displayTasks(dataGot);
-  titleInp.value = "";
-  descInp.value = "";
-  titleVal = "";
-  descVal = "";
+    displayTasks(tasks);
+    titleInp.value = "";
+    descInp.value = "";
+    titleVal = "";
+    descVal = "";
   }
 }
 
@@ -93,42 +76,40 @@ function displayTasks(data) {
 
 function toggleStrike(cb, i) {
   let sb = cb.nextElementSibling;
-  let dataGot = JSON.parse(localStorage.getItem("data"));
-  console.log(dataGot);
-  // if(i == dataGot.)
-  if (i in dataGot) {
-    dataGot[i].done = !dataGot[i].done;
+  tasks = getData();
+  if (i in tasks) {
+    tasks[i].done = !tasks[i].done;
   }
-  // if()
   if (cb.checked) {
     sb.style.textDecoration = "line-through";
   } else {
     sb.style.textDecoration = "none";
   }
-  // console.log(cb,i);
-  console.log(dataGot);
-  localStorage.setItem("data", JSON.stringify(dataGot));
+  setData();
 }
 
 function delF(i) {
-  let dataGot = JSON.parse(localStorage.getItem("data"));
-  console.log(dataGot);
+  tasks = getData();
 
-  dataGot.splice(i, 1);
+  tasks.splice(i, 1);
 
-  localStorage.setItem("data", JSON.stringify(dataGot));
-  displayTasks(dataGot);
-  tasks = dataGot;
+  setData();
+
+  displayTasks(tasks);
 }
 
 function delCompTasks() {
-  let dataGot = JSON.parse(localStorage.getItem("data"));
-  console.log(dataGot);
+  tasks = getData();
 
-  let undoneTasks = dataGot.filter((t) => t.done == false);
-  console.log(undoneTasks);
-  displayTasks(undoneTasks);
+  tasks = tasks.filter((t) => t.done == false);
+  displayTasks(tasks);
 
-  localStorage.setItem("data", JSON.stringify(undoneTasks));
-  tasks = dataGot;
+  setData();
+}
+
+function getData() {
+  return JSON.parse(localStorage.getItem("data"));
+}
+function setData() {
+  localStorage.setItem("data", JSON.stringify(tasks));
 }

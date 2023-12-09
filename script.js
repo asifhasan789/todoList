@@ -118,6 +118,7 @@ function delF(i) {
 
   localStorage.setItem("data", JSON.stringify(dataGot));
   displayTasks(dataGot);
+  tasks = dataGot;
 }
 
 function delCompTasks() {
@@ -129,4 +130,5 @@ function delCompTasks() {
   displayTasks(undoneTasks);
 
   localStorage.setItem("data", JSON.stringify(undoneTasks));
+  tasks = dataGot;
 }

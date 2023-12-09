@@ -56,7 +56,7 @@ function addTaskFunction() {
 
 function displayTasks(data) {
   if (data.length < 1) {
-    taskBody.innerHTML = "<h3>No Todo's Available</h3>;";
+    taskBody.innerHTML = "<h3>No Todo's Available</h3>";
   } else {
     let displayItems = data.map((d, i) => {
       let item = `<div class="taskI">
@@ -78,7 +78,7 @@ function displayTasks(data) {
 }
 
 function toggleStrike(cb, i) {
-  
+
   let sb = cb.nextElementSibling;
   tasks = getData();
   if (i in tasks) {

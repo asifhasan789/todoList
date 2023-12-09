@@ -61,6 +61,8 @@ button{
 }
 input[type='checkbox']{
     width: 50px;
+    height: 15px;
+    font-size: 50px;
 }
 input[type="checkbox"]:checked + .task {
   text-decoration: line-through;
@@ -113,12 +115,16 @@ button:hover{
 @media (max-width:454px){
     .todoTasks{
         width: 300px;
+        /* margin-bottom: 15px; */
+    }
+    .todoList{
+        margin-bottom: 15px;
     }
     /* .userinputs{
         width:300px;
     } */
     input[type='text']{
-        width:200px;
+        width:270px;
     }
 
 }

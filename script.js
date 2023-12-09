@@ -8,6 +8,7 @@ let descVal = "";
 
 window.onload = () => {
   let dataGot = JSON.parse(localStorage.getItem("data")) || [];
+  tasks = dataGot
   if(dataGot.length > 1){
   displayTasks(dataGot);}
 };
@@ -48,6 +49,10 @@ addTaskBtn.addEventListener("click", (e) => {
 });
 
 function addTaskFunction() {
+  if(titleVal == '' && descVal == ''){
+    alert("add Something first !")
+  }
+  else{
   localStorage.setItem("data", JSON.stringify(tasks));
   let dataGot = JSON.parse(localStorage.getItem("data"));
   console.log(dataGot) || [];
@@ -61,6 +66,9 @@ function addTaskFunction() {
   displayTasks(dataGot);
   titleInp.value = "";
   descInp.value = "";
+  titleVal = "";
+  descVal = "";
+  }
 }
 
 function displayTasks(data) {
